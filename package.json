@@ -1,0 +1,38 @@
+{
+    "name": "structural-analysis",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "server": "npx nodemon"
+    },
+    "dependencies": {
+        "bootstrap": "^5.2.3",
+        "express": "^4.18.2",
+        "mongodb": "^5.0.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "6"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.17",
+        "@types/react": "^18.0.27",
+        "@types/react-dom": "^18.0.10",
+        "@typescript-eslint/eslint-plugin": "^5.28.0",
+        "@typescript-eslint/parser": "^5.49.0",
+        "@vitejs/plugin-react": "^3.1.0",
+        "eslint": "^8.11.0",
+        "eslint-plugin-react": "^7.30.0",
+        "nodemon": "^2.0.20",
+        "prisma": "^4.10.1",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.9.3",
+        "vite": "^4.1.0"
+    },
+    "prisma": {
+        "schema": "src/db/schema.prisma"
+    }
+}
