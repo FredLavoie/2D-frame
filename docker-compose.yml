@@ -1,0 +1,23 @@
+services:
+    node:
+        build: .
+        container_name: 2d-frame-node
+        command: "${SERVER_RUN_COMMAND:-yarn static-server}"
+        volumes:
+            - ./src:/app/src
+        ports:
+            - 8001:8001
+#     db:
+#         image: mongo
+#         container_name: 2d-frame-mongodb
+#         environment:
+#             MONGO_INITDB_ROOT_USERNAME: ${MONGO_DATABASE_USERNAME}"
+#             MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DATABASE_PASSWORD}"
+#         ports:
+#             - 27017:27017
+#         volumes:
+#             - db:/data/db
+
+# volumes:
+#     db:
+#         driver: local
