@@ -1,13 +1,15 @@
 {
-    "name": "structural-analysis",
+    "name": "2d-frame",
     "private": true,
-    "version": "0.0.0",
+    "version": "0.0.1",
     "type": "module",
     "scripts": {
-        "dev": "vite",
         "build": "vite build",
+        "build-server": "tsc",
+        "dev": "vite",
         "preview": "vite preview",
-        "server": "npx nodemon"
+        "server": "npx nodemon --loader ts-node/esm ./src/server/index.ts",
+        "static-server": "make cldist && tsc && node dist/index.js"
     },
     "dependencies": {
         "bootstrap": "^5.2.3",

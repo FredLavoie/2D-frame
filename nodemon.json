@@ -1,6 +1,8 @@
 {
     "watch": ["src/server"],
-    "ext": ".ts",
-    "ignore": [],
-    "exec": "npx ts-node ./src/server/express_server.ts"
+    "execMap": {
+        "ts": "node --loader ts-node/esm"
+    },
+    "ext": "ts",
+    "ignore": [".git", "node_modules/**/node_modules"]
 }
