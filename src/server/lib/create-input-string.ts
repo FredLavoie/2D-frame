@@ -1,27 +1,46 @@
-// Takes the object provided by the server and creates the string that
-// the Fortran program expect
+type tFormInputObject = {
+    numJoints: number;
+    numMembers: number;
+    numElasticModulus: number;
+    numAreas: number;
+    numMomentOfInertia: number;
+    numLoadCases: number;
+    joints: number[][];
+    elasticMods: number[];
+    areas: number[];
+    MoI: number[];
+    members: number[][];
+    loads: number[][];
+};
 
-export function createInputString(obj) {
+/**
+ * Takes the object provided by the server and creates the string that
+ * the Fortran program expect
+ *
+ * @param obj
+ * @returns
+ */
+export function createInputString(formInputObject: tFormInputObject): string {
     let dataString = "";
 
     // write first line of input file
     dataString +=
-        obj.numJoints.toString() +
+        formInputObject.numJoints.toString() +
         " " +
-        obj.numMembers.toString() +
+        formInputObject.numMembers.toString() +
         " " +
-        obj.numElasticModulus.toString() +
+        formInputObject.numElasticModulus.toString() +
         " " +
-        obj.numAreas.toString() +
+        formInputObject.numAreas.toString() +
         " " +
-        obj.numMomentOfInertia.toString() +
+        formInputObject.numMomentOfInertia.toString() +
         " " +
-        obj.numLoadCases.toString() +
+        formInputObject.numLoadCases.toString() +
         "\n";
 
     // write joint data block of input file
     let count = 1;
-    for (const joint of obj.joints) {
+    for (const joint of formInputObject.joints) {
         const num = count.toString();
         dataString += num + " ";
         dataString += joint[0] + " ";
@@ -34,7 +53,7 @@ export function createInputString(obj) {
 
     // write properties block of input file
     count = 1;
-    for (const em of obj.elasticMods) {
+    for (const em of formInputObject.elasticMods) {
         const num = count.toString();
         dataString += num + " ";
         dataString += em + "\n";
@@ -42,7 +61,7 @@ export function createInputString(obj) {
     }
 
     count = 1;
-    for (const area of obj.areas) {
+    for (const area of formInputObject.areas) {
         const num = count.toString();
         dataString += num + " ";
         dataString += area + "\n";
@@ -50,7 +69,7 @@ export function createInputString(obj) {
     }
 
     count = 1;
-    for (const Mo of obj.MoI) {
+    for (const Mo of formInputObject.MoI) {
         const num = count.toString();
         dataString += num + " ";
         dataString += Mo + "\n";
@@ -59,7 +78,7 @@ export function createInputString(obj) {
 
     // write member data block of input file
     count = 1;
-    for (const member of obj.members) {
+    for (const member of formInputObject.members) {
         const num = count.toString();
         dataString += num + " ";
         dataString += member[0] + " ";
@@ -71,10 +90,11 @@ export function createInputString(obj) {
     }
 
     // write loads block of input file
-    for (const ea of obj.loads) {
-        const removeComma = ea.reduce((acc, e) => {
-            return (acc += " " + e.toString());
-        });
+    for (const ea of formInputObject.loads) {
+        const removeComma = ea.reduce((acc, current): string => {
+            const stringCurrent = current.toString();
+            return (acc += " " + stringCurrent);
+        }, "");
         dataString += removeComma + "\n";
     }
 
