@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import { PrismaClient } from "@prisma/client";
 // import { readFile, writeFile } from "fs";
 // import { execFile } from "child_process";
 // import { validateForm } from "./lib/validate-form-server.js";
@@ -6,80 +7,48 @@ import express, { Request, Response } from "express";
 // import { createInputString } from "./lib/create-input-string.js";
 
 const app = express();
+const prisma = new PrismaClient();
 const PORT = process.env.PORT || 8001;
 
 app.listen(PORT, () => {
-    console.log(`2D Frame application listening on port ${PORT}`);
+    console.info(`2D Frame application listening on port ${PORT}`);
 });
 
 /************************************************** GET REQUEST ******************************************************/
 /*********************************************************************************************************************/
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/api/:userId/models/", async (req: Request, res: Response) => {
+    const { userId } = req.params;
+    const models = await prisma.model.findMany({
+        where: { authorId: Number(userId) },
+    });
     return res.json({
-        status: "Sucess with nodemon!!",
+        models: models,
     });
 });
 
-// app.get("/documentation", (req, res) => {
-//     console.log("rendering documentation.ejs");
-//     res.render("documentation");
-// });
+app.get("/api/:userId/models/:modelId/", async (req: Request, res: Response) => {
+    const { userId, modelId } = req.params;
+    const model = await prisma.model.findMany({
+        where: { id: Number(modelId), authorId: Number(userId) },
+    });
+    return res.json({
+        models: model,
+    });
+});
 
-// app.get("/error-exec", (req, res) => {
-//     console.error("There was an error parsing the data in the output JSON file");
-//     res.render("error-exec");
-// });
-
-// app.get("/results-json", (req, res) => {
-//     readFile("program/data_out.json", "utf-8", (error, data) => {
-//         if (error) {
-//             console.error("There was an error reading the output JSON file");
-//             console.error(error);
-//             res.render("error-exec");
-//             return;
-//         }
-//         try {
-//             const parsedData = JSON.parse(data);
-//             res.send(parsedData);
-//         } catch (error) {
-//             res.status(500);
-//         }
-//     });
-// });
+app.get("/api/users/:userId/", async (req: Request, res: Response) => {
+    const { userId } = req.params;
+    const user = await prisma.user.findMany({
+        where: { id: Number(userId) },
+        include: {
+            models: true,
+        },
+    });
+    return res.json({
+        models: user,
+    });
+});
 
 /************************************************* POST REQUEST ******************************************************/
 /*********************************************************************************************************************/
-
-// app.post("/results", (req, res) => {
-//     const validForm = validateForm(req.body);
-
-//     if (validForm.valid === false) {
-//         res.render("error-input", validForm);
-//         return;
-//     }
-
-//     const inputObject = createInputObject(req.body);
-//     const dataString = createInputString(inputObject);
-
-//     // code to write to the input file
-//     writeFile("program/data_in.txt", dataString, (error) => {
-//         if (error) {
-//             console.error("There was an error writing the input file");
-//             console.error(error);
-//             res.render("error-write");
-//             return;
-//         }
-//         // code to run executable, then render 'results' page
-//         execFile("program/sa-linux-exec", (error) => {
-//             if (error) {
-//                 console.error("There was an error running the executable");
-//                 console.error(error);
-//                 res.render("error-exec");
-//                 return;
-//             }
-//             console.log("rendering results.ejs");
-//             res.render("results");
-//         });
-//     });
-// });

@@ -19,6 +19,8 @@ COPY tsconfig.json /app
 COPY tsconfig.node.json /app
 COPY nodemon.json /app
 COPY Makefile /app
+COPY .env /app
 
 # build the fortran executable
 RUN gfortran -o /app/src/struct-program/sa-linux-exec /app/src/struct-program/FrameAnalysis.f95
+RUN npx prisma generate
