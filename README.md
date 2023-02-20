@@ -41,6 +41,6 @@ Back end:
 -   [Node JS 16](https://nodejs.org/en/)
 -   [Express JS](https://expressjs.com/)
 -   [Prisma](https://www.prisma.io/)
--   [Mongo](https://www.mongodb.com/)
+-   [SQLite 3](https://www.sqlite.org)
 -   [Docker](https://www.docker.com/)
 -   [FORTRAN 95](https://fortran-lang.org/en/)
