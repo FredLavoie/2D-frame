@@ -33,6 +33,7 @@ The input form is where the user input the coordinates of the joints, the member
 Front end:
 
 -   [React 18](https://reactjs.org/)
+-   [Sass](https://sass-lang.com/)
 -   [Bootstrap](https://getbootstrap.com/)
 -   [Vite](https://vitejs.dev/)
 
