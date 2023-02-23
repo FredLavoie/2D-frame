@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
 
-import styles from "./Layout.module.scss";
+import styles from "../styles/Layout.module.scss";
 
 function Layout(): JSX.Element {
     return (

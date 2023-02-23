@@ -51,6 +51,12 @@
             }
         }
 
+        .members-sub-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .input-style {
             width: 7em;
             margin: 0.5em 0em;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./Documentation.module.scss";
+import styles from "../styles/Documentation.module.scss";
 
 function Documentation(): JSX.Element {
     return (

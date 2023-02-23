@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Login.module.scss";
+import "../styles/Login.module.scss";
 
 function Login(): JSX.Element {
     return <div>Login</div>;

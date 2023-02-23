@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import styles from "./Mobile.module.scss";
+import styles from "../styles/Mobile.module.scss";
 
 function Mobile(): JSX.Element {
     return (

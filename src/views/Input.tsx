@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./Input.module.scss";
+import styles from "../styles/Input.module.scss";
 
 function Input(): JSX.Element {
     return (
@@ -133,7 +133,7 @@ function Input(): JSX.Element {
 
                 <h3 className={styles["section-header"]}>Member Input</h3>
                 <div id="members-container">
-                    <div className={`${styles["container-2"]} ${styles["members-sub-container"]}"`}>
+                    <div className={`${styles["container-2"]} ${styles["members-sub-container"]}`}>
                         <label>Member #1</label>
                         <input
                             className={`${styles["input-style"]} form-control member`}

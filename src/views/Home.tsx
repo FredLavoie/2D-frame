@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Home.module.scss";
+import "../styles/Home.module.scss";
 
 function Home(): JSX.Element {
     return <div>Home</div>;
