@@ -16,9 +16,9 @@ function Layout(): JSX.Element {
                             Dashboard
                         </Link>
                         <Link className="navbar-brand" to="/documentation">
-                            Documentation
+                            Docs
                         </Link>
-                        <Link className="navbar-brand" to="/documentation">
+                        <Link className="navbar-brand" to="/login">
                             Login
                         </Link>
                     </div>

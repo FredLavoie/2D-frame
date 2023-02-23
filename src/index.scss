@@ -39,7 +39,7 @@ p {
 }
 
 /* Screens smaller than 800px wide cannot use the app */
-@media (max-width: 800px) {
+@media (max-width: 830px) {
     .app-container {
         display: none;
     }
