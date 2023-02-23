@@ -8,7 +8,7 @@ function Layout(): JSX.Element {
         <>
             <nav className="navbar sticky-top navbar-dark bg-primary">
                 <div className={styles["nav-links-container"]}>
-                    <Link className="navbar-brand bold" to="/">
+                    <Link className={`${styles["title-link"]} navbar-brand bold`} to="/">
                         2D Frame
                     </Link>
                     <div className="navbar-brand">
@@ -17,6 +17,9 @@ function Layout(): JSX.Element {
                         </Link>
                         <Link className="navbar-brand" to="/documentation">
                             Documentation
+                        </Link>
+                        <Link className="navbar-brand" to="/documentation">
+                            Login
                         </Link>
                     </div>
                 </div>

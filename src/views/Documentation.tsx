@@ -4,7 +4,7 @@ import styles from "./Documentation.module.scss";
 
 function Documentation(): JSX.Element {
     return (
-        <div className={styles["documentation-container"]}>
+        <div className={styles["doc-container"]}>
             <h1>Introduction</h1>
             <p>
                 2D Structural Analysis is a tool for calculating internal forces and displacements of a two-dimensional structure. The heart

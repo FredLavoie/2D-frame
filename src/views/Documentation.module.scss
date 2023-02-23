@@ -1,17 +1,9 @@
-.documentation-container {
+.doc-container {
     margin: 4em auto 4em auto;
-    width: 800px;
+    width: 700px;
     display: flex;
     flex-direction: column;
-
-    h1,
-    h2 {
-        text-align: left;
-    }
-
-    p {
-        text-align: left;
-    }
+    align-items: flex-start;
 
     .doc-images {
         width: 700px;

@@ -28,3 +28,22 @@ body {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
+
+/* consider moving this to the Documentation view scss file */
+p {
+    text-align: left;
+}
+
+.mobile-view {
+    display: none;
+}
+
+/* Screens smaller than 800px wide cannot use the app */
+@media (max-width: 800px) {
+    .app-container {
+        display: none;
+    }
+    .mobile-view {
+        display: block;
+    }
+}
