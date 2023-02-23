@@ -6,10 +6,11 @@
     "scripts": {
         "build": "vite build",
         "build-server": "tsc",
-        "start": "vite",
+        "lint": "eslint ./src",
         "preview": "vite preview",
         "server": "npx nodemon --loader ts-node/esm ./src/server/index.ts",
-        "static-server": "make cldist && tsc && node dist/index.js"
+        "static-server": "make cldist && tsc && node dist/index.js",
+        "start": "vite"
     },
     "dependencies": {
         "@prisma/client": "^4.10.1",
