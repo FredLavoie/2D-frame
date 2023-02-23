@@ -7,6 +7,7 @@ import Dashboard from "./views/Dashboard";
 import Documentation from "./views/Documentation";
 import RouteNotFound from "./views/RouteNotFound";
 
+import "./index.scss";
 import "./App.scss";
 
 function App(): JSX.Element {
