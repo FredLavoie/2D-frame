@@ -1,4 +1,6 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
+
+import { validateForm } from "../utils/validate-form-client.js";
 
 import styles from "../styles/Input.module.scss";
 
@@ -41,6 +43,21 @@ function Input(): JSX.Element {
             memberLoads: [],
         },
     );
+
+    useEffect(() => {
+        // append the input-form-utils as a script to the input form html in
+        // order to enable the drawing of the SVG elements of the structure
+        const script = document.createElement("script");
+        script.src = "/src/utils/input-form-utils.ts";
+        script.async = true;
+        script.type = "module";
+
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
 
     function handleUpdateGeneralInfo(property: string, newNumProps: number): void {
         const numPropsDelta = newNumProps - generalInfoState[property].length;
@@ -144,11 +161,15 @@ function Input(): JSX.Element {
     function handleSubmit(event: { preventDefault: () => void }): void {
         event.preventDefault();
         // print out all the form values to the console
+
+        // change this to send the form data to be validated instead
+        // of using querySelectorAll in the validation file itself
+        validateForm();
     }
 
     return (
         <div className={styles["input-container"]}>
-            <svg xmlns="http://www.w3.org/2000/svg" className={styles["structure-window"]}>
+            <svg xmlns="http://www.w3.org/2000/svg" id="structure-window" className={styles["structure-window"]}>
                 <rect width="100%" height="100%" fill="#eee"></rect>
             </svg>
 
@@ -162,7 +183,7 @@ function Input(): JSX.Element {
                             className={`${styles["input-style"]} form-control`}
                             type="number"
                             name="numJoints"
-                            defaultValue={generalInfoState.numJoints?.length}
+                            value={generalInfoState.numJoints?.length}
                             onChange={(e) => handleUpdateGeneralInfo("numJoints", Number(e.target.value))}
                         />
                     </div>
@@ -381,7 +402,7 @@ function Input(): JSX.Element {
                             <div key={`joint-load-${i}`} className={`${styles["container-2"]} ${styles["joint-load-container"]}`}>
                                 <label>{`Joint Load #${i + 1}`}</label>
                                 <input
-                                    className={`${styles["input-style"]} form-control`}
+                                    className={`${styles["input-style"]} form-control joint-loads jl-j`}
                                     name="loads"
                                     type="number"
                                     placeholder="Joint No."
@@ -389,21 +410,21 @@ function Input(): JSX.Element {
                                     onChange={(e) => handleLoadsDataUpdate("jointLoads", e.target.value, i, "0")}
                                 />
                                 <input
-                                    className={`${styles["input-style"]} form-control`}
+                                    className={`${styles["input-style"]} form-control joint-loads jl-x`}
                                     name="loads"
                                     placeholder="X value"
                                     value={ea[1]}
                                     onChange={(e) => handleLoadsDataUpdate("jointLoads", e.target.value, i, "1")}
                                 />
                                 <input
-                                    className={`${styles["input-style"]} form-control`}
+                                    className={`${styles["input-style"]} form-control joint-loads jl-y`}
                                     name="loads"
                                     placeholder="Y value"
                                     value={ea[2]}
                                     onChange={(e) => handleLoadsDataUpdate("jointLoads", e.target.value, i, "2")}
                                 />
                                 <input
-                                    className={`${styles["input-style"]} form-control`}
+                                    className={`${styles["input-style"]} form-control joint-loads jl-m`}
                                     name="loads"
                                     placeholder="Moment"
                                     value={ea[3]}
@@ -418,7 +439,7 @@ function Input(): JSX.Element {
                             <div key={`member-load-${i}`} className={`${styles["container-2"]} ${styles["member-load-container"]}`}>
                                 <label>{`Member Load #${i + 1}`}</label>
                                 <input
-                                    className={`${styles["input-style"]} form-control`}
+                                    className={`${styles["input-style"]} form-control member-loads ml-m`}
                                     name="loads"
                                     type="number"
                                     placeholder="Member No."
@@ -426,21 +447,21 @@ function Input(): JSX.Element {
                                     onChange={(e) => handleLoadsDataUpdate("memberLoads", e.target.value, i, "0")}
                                 />
                                 <input
-                                    className={`${styles["input-style"]} form-control`}
+                                    className={`${styles["input-style"]} form-control member-loads ml-xd`}
                                     name="loads"
                                     placeholder="X-distance"
                                     value={ea[1]}
                                     onChange={(e) => handleLoadsDataUpdate("memberLoads", e.target.value, i, "1")}
                                 />
                                 <input
-                                    className={`${styles["input-style"]} form-control`}
+                                    className={`${styles["input-style"]} form-control member-loads ml-pl`}
                                     name="loads"
                                     placeholder="Point Load"
                                     value={ea[2]}
                                     onChange={(e) => handleLoadsDataUpdate("memberLoads", e.target.value, i, "2")}
                                 />
                                 <input
-                                    className={`${styles["input-style"]} form-control`}
+                                    className={`${styles["input-style"]} form-control member-loads ml-udl`}
                                     name="loads"
                                     placeholder="UDL"
                                     value={ea[3]}
