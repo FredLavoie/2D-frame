@@ -1,10 +1,12 @@
-export function drawJointDisplacement(jointCoords, displacements) {
+// TODO: this fuction is a work in progress
+export function drawJointDisplacement(jointCoords: number[], displacements: number[]): void {
     const xCoord = jointCoords[0] + displacements[0] * 3;
     const yCoord = jointCoords[1] - displacements[1] * 3;
 
     const ns = "http://www.w3.org/2000/svg";
     const box = document.querySelector("#displacements-diagram");
     const node = document.createElementNS(ns, "circle");
+    if (!box) return;
     node.setAttributeNS(null, "stroke", "red");
     node.setAttributeNS(null, "fill", "red");
     node.setAttributeNS(null, "id", "displaced-joint");

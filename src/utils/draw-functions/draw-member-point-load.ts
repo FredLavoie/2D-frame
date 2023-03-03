@@ -1,4 +1,13 @@
-export function drawMemberPointLoad(memberNum, offset, load, nodes, members, window) {
+import { tGlobalMemberObject, tGlobalNodeObject } from "../../types.js";
+
+export function drawMemberPointLoad(
+    memberNum: number,
+    offset: number,
+    load: number,
+    nodes: tGlobalNodeObject,
+    members: tGlobalMemberObject,
+    window: string,
+): void {
     const startJoint = members[memberNum].joints[0];
     const endJoint = members[memberNum].joints[1];
     const xDist = nodes[endJoint][0][0] - nodes[startJoint][0][0];
@@ -19,6 +28,7 @@ export function drawMemberPointLoad(memberNum, offset, load, nodes, members, win
 
     const ns = "http://www.w3.org/2000/svg";
     const box = document.querySelector(window);
+    if (!box) return;
     const arrow = document.createElementNS(ns, "polygon");
     arrow.setAttributeNS(null, "id", "member-load");
     arrow.setAttributeNS(null, "stroke", "#0000ff");

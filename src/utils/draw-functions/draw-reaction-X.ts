@@ -1,4 +1,4 @@
-export function drawReactionX(jointNum, load, nodes) {
+export function drawReactionX(jointNum: string | number, load: number, nodes: { [x: string]: number[][] }): void {
     const headX = nodes[jointNum][1][0];
     const headY = nodes[jointNum][1][1];
     const tailX = load > 0 ? headX - 50 : headX + 50;
@@ -12,6 +12,7 @@ export function drawReactionX(jointNum, load, nodes) {
 
     const ns = "http://www.w3.org/2000/svg";
     const box = document.querySelector("#reactions-diagram");
+    if (!box) return;
     const arrow = document.createElementNS(ns, "polygon");
     arrow.setAttributeNS(null, "id", "joint-load");
     arrow.setAttributeNS(null, "stroke", "red");

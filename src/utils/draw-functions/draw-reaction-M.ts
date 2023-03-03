@@ -1,4 +1,4 @@
-export function drawReactionM(jointNum, moment, nodes) {
+export function drawReactionM(jointNum: string | number, moment: number, nodes: { [x: string]: number[][] }): void {
     const cx = nodes[jointNum][1][0] - 15;
     const cy = nodes[jointNum][1][1] + 15;
     const base1 = `${nodes[jointNum][1][0] + 12} ${nodes[jointNum][1][1] - 12}`;
@@ -16,6 +16,7 @@ export function drawReactionM(jointNum, moment, nodes) {
 
     const ns = "http://www.w3.org/2000/svg";
     const box = document.querySelector("#reactions-diagram");
+    if (!box) return;
     const arrow = document.createElementNS(ns, "polygon");
     arrow.setAttributeNS(null, "id", "joint-load");
     arrow.setAttributeNS(null, "stroke", "red");

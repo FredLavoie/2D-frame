@@ -1,4 +1,6 @@
-export function drawSupportXR(jointNum, nodes, window) {
+import { tGlobalNodeObject } from "../../types.js";
+
+export function drawSupportXR(jointNum: number, nodes: tGlobalNodeObject, window: string): void {
     if (!nodes[jointNum][1][0] || !nodes[jointNum][1][1]) return;
 
     const xCoord = nodes[jointNum][1][0];
@@ -6,6 +8,7 @@ export function drawSupportXR(jointNum, nodes, window) {
 
     const ns = "http://www.w3.org/2000/svg";
     const box = document.querySelector(window);
+    if (!box) return;
     const support = document.createElementNS(ns, "rect");
     support.setAttributeNS(null, "id", "support");
     support.setAttributeNS(null, "stroke", "green");

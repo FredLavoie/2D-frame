@@ -1,4 +1,6 @@
-export function drawSupportX(jointNum, nodes, window) {
+import { tGlobalNodeObject } from "../../types.js";
+
+export function drawSupportX(jointNum: number, nodes: tGlobalNodeObject, window: string): void {
     // X - roller support
     if (!nodes[jointNum][1][0] || !nodes[jointNum][1][1]) return;
 
@@ -11,6 +13,7 @@ export function drawSupportX(jointNum, nodes, window) {
 
     const ns = "http://www.w3.org/2000/svg";
     const box = document.querySelector(window);
+    if (!box) return;
     const circle = document.createElementNS(ns, "circle");
     circle.setAttributeNS(null, "id", "support");
     circle.setAttributeNS(null, "stroke", "green");

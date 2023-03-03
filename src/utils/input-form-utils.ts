@@ -18,17 +18,18 @@ import {
     drawMemberUDLLoad,
 } from "./draw-functions";
 
+import { tGlobalMemberObject, tGlobalNodeObject } from "../types.js";
+
 // instantiate the globabl objects that hold the structure and loads data
-const globalNodeObject = {};
-const globalMemberObject = {};
+const globalNodeObject: tGlobalNodeObject = {};
+const globalMemberObject: tGlobalMemberObject = {
+    joints: [],
+    start: [],
+    end: [],
+    forceAngle: -1,
+};
 
-// add event listener to the resizing of the window to redraw
-// the entire structure if the window is resized
-window.addEventListener("resize", () => {
-    redrawAllData();
-});
-
-function redrawAllData(): void {
+export function redrawAllData(): void {
     // clear all svg nodes before redrawing
     document.querySelectorAll("svg>#joint").forEach((n) => n.remove());
     document.querySelectorAll("svg>#joint-tag").forEach((n) => n.remove());

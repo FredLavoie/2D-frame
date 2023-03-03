@@ -1,4 +1,12 @@
-export function drawMemberUDLLoad(memberNum, udl, nodes, members, window) {
+import { tGlobalMemberObject, tGlobalNodeObject } from "../../types.js";
+
+export function drawMemberUDLLoad(
+    memberNum: number,
+    udl: number,
+    nodes: tGlobalNodeObject,
+    members: tGlobalMemberObject,
+    window: string,
+): void {
     const startJoint = members[memberNum].joints[0];
     const endJoint = members[memberNum].joints[1];
     const xDist = nodes[endJoint][0][0] - nodes[startJoint][0][0];
@@ -10,6 +18,7 @@ export function drawMemberUDLLoad(memberNum, udl, nodes, members, window) {
 
     const ns = "http://www.w3.org/2000/svg";
     const box = document.querySelector(window);
+    if (!box) return;
 
     for (let i = 0; i < 8; i++) {
         const offset = (memberLength / 7) * i;

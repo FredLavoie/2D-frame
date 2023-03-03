@@ -1,4 +1,6 @@
-export function drawSupportXY(jointNum, nodes, window) {
+import { tGlobalNodeObject } from "../../types.js";
+
+export function drawSupportXY(jointNum: number, nodes: tGlobalNodeObject, window: string): void {
     // pin support
     if (!nodes[jointNum][1][0] || !nodes[jointNum][1][1]) return;
 
@@ -14,6 +16,7 @@ export function drawSupportXY(jointNum, nodes, window) {
 
     const ns = "http://www.w3.org/2000/svg";
     const box = document.querySelector(window);
+    if (!box) return;
     const triangle = document.createElementNS(ns, "polygon");
     triangle.setAttributeNS(null, "id", "support");
     triangle.setAttributeNS(null, "stroke", "green");

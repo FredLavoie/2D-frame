@@ -1,3 +1,5 @@
+import { tGlobalNodeObject } from "../../types.js";
+
 /**
  * Draw the line representing a member within a box
  *
@@ -8,12 +10,13 @@
  * @param {string} window the CSS class of the SVG box to append the new SVG elements to
  * @returns nothing
  */
-export function drawMember(num, start, end, nodes, window) {
+export function drawMember(num: number, start: string | number, end: string | number, nodes: tGlobalNodeObject, window: string): void {
     if (!(start in nodes) || !(end in nodes)) return;
 
     if (start !== 0 && end !== 0) {
         const ns = "http://www.w3.org/2000/svg";
         const box = document.querySelector(window);
+        if (!box) return;
         const member = document.createElementNS(ns, "line");
         member.setAttributeNS(null, "id", "member");
         member.setAttributeNS(null, "x1", `${nodes[start][1][0]}`);

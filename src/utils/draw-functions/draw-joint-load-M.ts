@@ -1,4 +1,6 @@
-export function drawJointLoadM(jointNum, moment, nodes, window) {
+import { tGlobalNodeObject } from "../../types.js";
+
+export function drawJointLoadM(jointNum: number, moment: number, nodes: tGlobalNodeObject, window: string): void {
     if (!nodes[jointNum]) return;
 
     const cx = nodes[jointNum][1][0] - 15;
@@ -17,7 +19,8 @@ export function drawJointLoadM(jointNum, moment, nodes, window) {
     }
 
     const ns = "http://www.w3.org/2000/svg";
-    const box = document.querySelector(window);
+    const box = document.querySelector<HTMLElement>(window);
+    if (!box) return;
     const arrow = document.createElementNS(ns, "polygon");
     arrow.setAttributeNS(null, "id", "joint-load");
     arrow.setAttributeNS(null, "stroke", "red");

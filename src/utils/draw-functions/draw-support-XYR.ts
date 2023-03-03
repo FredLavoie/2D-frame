@@ -1,4 +1,6 @@
-export function drawSupportXYR(jointNum, nodes, members, window) {
+import { tGlobalNodeObject } from "../../types.js";
+
+export function drawSupportXYR(jointNum: number, nodes: tGlobalNodeObject, members: { [x: string]: any }, window: string): void {
     // fixed support
     const currentJoint = nodes[jointNum];
 
@@ -12,53 +14,21 @@ export function drawSupportXYR(jointNum, nodes, members, window) {
             const deltaY = currentMember.end[1] - currentMember.start[1];
             const orientation = Math.abs(deltaX) > Math.abs(deltaY) ? "horz" : "vert";
 
-            if (
-                orientation === "horz" &&
-                currentMember.joints[0] === jointNum &&
-                currentMember.start[0] < currentMember.end[0]
-            ) {
+            if (orientation === "horz" && currentMember.joints[0] === jointNum && currentMember.start[0] < currentMember.end[0]) {
                 angle = 0;
-            } else if (
-                orientation === "horz" &&
-                currentMember.joints[1] === jointNum &&
-                currentMember.end[0] > currentMember.start[0]
-            ) {
+            } else if (orientation === "horz" && currentMember.joints[1] === jointNum && currentMember.end[0] > currentMember.start[0]) {
                 angle = 180;
-            } else if (
-                orientation === "horz" &&
-                currentMember.joints[0] === jointNum &&
-                currentMember.start[0] > currentMember.end[0]
-            ) {
+            } else if (orientation === "horz" && currentMember.joints[0] === jointNum && currentMember.start[0] > currentMember.end[0]) {
                 angle = 180;
-            } else if (
-                orientation === "horz" &&
-                currentMember.joints[1] === jointNum &&
-                currentMember.end[0] < currentMember.start[0]
-            ) {
+            } else if (orientation === "horz" && currentMember.joints[1] === jointNum && currentMember.end[0] < currentMember.start[0]) {
                 angle = 0;
-            } else if (
-                orientation === "vert" &&
-                currentMember.joints[0] === jointNum &&
-                currentMember.end[1] < currentMember.start[1]
-            ) {
+            } else if (orientation === "vert" && currentMember.joints[0] === jointNum && currentMember.end[1] < currentMember.start[1]) {
                 angle = 270;
-            } else if (
-                orientation === "vert" &&
-                currentMember.joints[1] === jointNum &&
-                currentMember.end[1] > currentMember.start[1]
-            ) {
+            } else if (orientation === "vert" && currentMember.joints[1] === jointNum && currentMember.end[1] > currentMember.start[1]) {
                 angle = 90;
-            } else if (
-                orientation === "vert" &&
-                currentMember.joints[0] === jointNum &&
-                currentMember.end[1] > currentMember.start[1]
-            ) {
+            } else if (orientation === "vert" && currentMember.joints[0] === jointNum && currentMember.end[1] > currentMember.start[1]) {
                 angle = 90;
-            } else if (
-                orientation === "vert" &&
-                currentMember.joints[1] === jointNum &&
-                currentMember.end[1] < currentMember.start[1]
-            ) {
+            } else if (orientation === "vert" && currentMember.joints[1] === jointNum && currentMember.end[1] < currentMember.start[1]) {
                 angle = 270;
             } else {
                 return;
@@ -75,6 +45,7 @@ export function drawSupportXYR(jointNum, nodes, members, window) {
 
     const ns = "http://www.w3.org/2000/svg";
     const box = document.querySelector(window);
+    if (!box) return;
     const line = document.createElementNS(ns, "line");
     line.setAttributeNS(null, "id", "support");
     line.setAttributeNS(null, "stroke", "green");
