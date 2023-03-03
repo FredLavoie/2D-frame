@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer } from "react";
 
-import { validateForm } from "../utils/validate-form-client.js";
+import { validateForm } from "../utils/validate-form-client";
+import { redrawAllData } from "../utils/input-form-utils";
 
 import styles from "../styles/Input.module.scss";
 
@@ -45,17 +46,16 @@ function Input(): JSX.Element {
     );
 
     useEffect(() => {
-        // append the input-form-utils as a script to the input form html in
-        // order to enable the drawing of the SVG elements of the structure
-        const script = document.createElement("script");
-        script.src = "/src/utils/input-form-utils.ts";
-        script.async = true;
-        script.type = "module";
-
-        document.body.appendChild(script);
+        // add event listener to the resizing of the window to redraw
+        // the entire structure if the window is resized
+        window.addEventListener("resize", () => {
+            redrawAllData();
+        });
 
         return () => {
-            document.body.removeChild(script);
+            window.removeEventListener("resize", () => {
+                redrawAllData();
+            });
         };
     }, []);
 
@@ -118,6 +118,7 @@ function Input(): JSX.Element {
     }
 
     function handleUpdateLoadsInfo(property: string, newNumProps: number): void {
+        redrawAllData();
         const numPropsDelta = newNumProps - loadsInfoState[property].length;
 
         // if the number of properties is being reduced, simply return
@@ -135,24 +136,32 @@ function Input(): JSX.Element {
     }
 
     function handleJointDataUpdate(value: string, i: number, j: string): void {
+        redrawAllData();
+
         const newJointInfoStateObj = generalInfoState.numJoints ?? [];
         newJointInfoStateObj[i][j] = value;
         updateGeneralInfoState({ numJoints: newJointInfoStateObj });
     }
 
     function handleMemberDataUpdate(value: string, i: number, j: string): void {
+        redrawAllData();
+
         const newMemberInfoStateObj = generalInfoState.numMembers ?? [];
         newMemberInfoStateObj[i][j] = value;
         updateGeneralInfoState({ numMembers: newMemberInfoStateObj });
     }
 
     function handlePropertiesDataUpdate(property: string, value: string, i: number): void {
+        redrawAllData();
+
         const newMemberInfoStateObj = generalInfoState[property] ?? [];
         newMemberInfoStateObj[i] = value;
         updateGeneralInfoState({ [property]: newMemberInfoStateObj });
     }
 
     function handleLoadsDataUpdate(property: string, value: string, i: number, j: string): void {
+        redrawAllData();
+
         const newLoadsInfoStateObj = loadsInfoState[property] ?? [];
         newLoadsInfoStateObj[i][j] = value;
         updateLoadsInfoState({ [property]: newLoadsInfoStateObj });
@@ -164,7 +173,8 @@ function Input(): JSX.Element {
 
         // change this to send the form data to be validated instead
         // of using querySelectorAll in the validation file itself
-        validateForm();
+        const validForm = validateForm();
+        if (!validForm) return;
     }
 
     return (

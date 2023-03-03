@@ -38,6 +38,12 @@ p {
     display: none;
 }
 
+/* global error styling for invalid fields */
+.input-error {
+    border-color: red;
+    text-align: left;
+}
+
 /* Screens smaller than 800px wide cannot use the app */
 @media (max-width: 830px) {
     .app-container {
