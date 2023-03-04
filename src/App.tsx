@@ -9,8 +9,6 @@ import Input from "./views/Input";
 import Layout from "./components/Layout";
 import Login from "./views/Login";
 
-import "./App.scss";
-
 function App(): JSX.Element {
     return (
         <Routes>
