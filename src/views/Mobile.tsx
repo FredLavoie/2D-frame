@@ -12,7 +12,7 @@ function Mobile(): JSX.Element {
                 </Link>
             </nav>
             <br />
-            <h3>This app cannot use this app on mobile browsers</h3>
+            <h3>This app cannot be used on a mobile browsers</h3>
         </>
     );
 }

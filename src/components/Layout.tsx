@@ -12,9 +12,9 @@ function Layout(): JSX.Element {
                         2D Frame
                     </Link>
                     <div className="navbar-brand">
-                        <Link className="navbar-brand" to="/dashboard">
+                        {/* <Link className="navbar-brand" to="/dashboard">
                             Dashboard
-                        </Link>
+                        </Link> */}
                         <Link className="navbar-brand" to="/documentation">
                             Docs
                         </Link>
