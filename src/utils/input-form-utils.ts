@@ -1,5 +1,5 @@
-import { calculateJointCoordinates } from "./calculate-joint-coordinates.js";
-import { calculateForceAngle } from "./calculate-force-angle.js";
+import { calculateJointCoordinates } from "./calculate-joint-coordinates";
+import { calculateForceAngle } from "./calculate-force-angle";
 
 import {
     drawJoint,
@@ -18,16 +18,11 @@ import {
     drawMemberUDLLoad,
 } from "./draw-functions";
 
-import { tGlobalMemberObject, tGlobalNodeObject } from "../types.js";
+import { tGlobalMemberObject, tGlobalNodeObject } from "../types";
 
 // instantiate the globabl objects that hold the structure and loads data
 const globalNodeObject: tGlobalNodeObject = {};
-const globalMemberObject: tGlobalMemberObject = {
-    joints: [],
-    start: [],
-    end: [],
-    forceAngle: -1,
-};
+const globalMemberObject: tGlobalMemberObject = {};
 
 export function redrawAllData(): void {
     // clear all svg nodes before redrawing
@@ -89,6 +84,7 @@ function generateMembers(arr: number[]): void {
 }
 
 function generateSupports(arr: number[]): void {
+    if (Object.keys(globalMemberObject).length === 0) return;
     let jointNum = 1;
     for (let i = 0; i < arr.length; i += 3) {
         globalNodeObject[jointNum].push([arr[i], arr[i + 1], arr[i + 2]]);

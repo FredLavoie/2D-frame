@@ -1,4 +1,6 @@
-export function drawReactionX(jointNum: string | number, load: number, nodes: { [x: string]: number[][] }): void {
+import { tGlobalNodeObject } from "../../types";
+
+export function drawReactionX(jointNum: number, load: number, nodes: tGlobalNodeObject): void {
     const headX = nodes[jointNum][1][0];
     const headY = nodes[jointNum][1][1];
     const tailX = load > 0 ? headX - 50 : headX + 50;

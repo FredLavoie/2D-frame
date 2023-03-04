@@ -1,4 +1,4 @@
-import { tGlobalNodeObject } from "../../types.js";
+import { tGlobalNodeObject } from "../../types";
 
 export function drawSupportY(jointNum: number, nodes: tGlobalNodeObject, window: string): void {
     // Y - roller support

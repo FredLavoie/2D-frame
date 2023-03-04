@@ -1,4 +1,6 @@
-export function drawReactionM(jointNum: string | number, moment: number, nodes: { [x: string]: number[][] }): void {
+import { tGlobalNodeObject } from "../../types";
+
+export function drawReactionM(jointNum: number, moment: number, nodes: tGlobalNodeObject): void {
     const cx = nodes[jointNum][1][0] - 15;
     const cy = nodes[jointNum][1][1] + 15;
     const base1 = `${nodes[jointNum][1][0] + 12} ${nodes[jointNum][1][1] - 12}`;

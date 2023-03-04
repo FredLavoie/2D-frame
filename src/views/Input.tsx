@@ -152,8 +152,6 @@ function Input(): JSX.Element {
     }
 
     function handlePropertiesDataUpdate(property: string, value: string, i: number): void {
-        redrawAllData();
-
         const newMemberInfoStateObj = generalInfoState[property] ?? [];
         newMemberInfoStateObj[i] = value;
         updateGeneralInfoState({ [property]: newMemberInfoStateObj });
@@ -247,39 +245,45 @@ function Input(): JSX.Element {
                 <div className={styles["container-2"]}>
                     <div id="em-container">
                         <label>Elastic Modulus #1</label>
-                        {generalInfoState?.numElasticModulus?.map((ea, i) => (
-                            <input
-                                key={`numElasticModulus-${i}`}
-                                className={`${styles["input-style"]} form-control input-EM`}
-                                name="ElasticMods"
-                                value={ea[i]}
-                                onChange={(e) => handlePropertiesDataUpdate("numElasticModulus", e.target.value, i)}
-                            />
-                        ))}
+                        {generalInfoState.numElasticModulus &&
+                            generalInfoState.numElasticModulus.map((ea, i) => (
+                                <input
+                                    key={`numElasticModulus-${i}`}
+                                    className={`${styles["input-style"]} form-control input-EM`}
+                                    type="number"
+                                    name="ElasticMods"
+                                    value={ea}
+                                    onChange={(e) => handlePropertiesDataUpdate("numElasticModulus", e.target.value, i)}
+                                />
+                            ))}
                     </div>
                     <div id="area-container">
                         <label>Area # 1</label>
-                        {generalInfoState?.numAreas?.map((ea, i) => (
-                            <input
-                                key={`numAreas-${i}`}
-                                className={`${styles["input-style"]} form-control input-Area`}
-                                name="Areas"
-                                value={ea[i]}
-                                onChange={(e) => handlePropertiesDataUpdate("numAreas", e.target.value, i)}
-                            />
-                        ))}
+                        {generalInfoState.numAreas &&
+                            generalInfoState.numAreas.map((ea, i) => (
+                                <input
+                                    key={`numAreas-${i}`}
+                                    className={`${styles["input-style"]} form-control input-Area`}
+                                    type="number"
+                                    name="Areas"
+                                    value={ea}
+                                    onChange={(e) => handlePropertiesDataUpdate("numAreas", e.target.value, i)}
+                                />
+                            ))}
                     </div>
                     <div id="moi-container">
                         <label>Moment of Inertia # 1</label>
-                        {generalInfoState?.numMomentOfInertia?.map((ea, i) => (
-                            <input
-                                key={`numMomentOfInertia-${i}`}
-                                className={`${styles["input-style"]} form-control input-MoI`}
-                                name="MoI"
-                                value={ea[i]}
-                                onChange={(e) => handlePropertiesDataUpdate("numMomentOfInertia", e.target.value, i)}
-                            />
-                        ))}
+                        {generalInfoState.numMomentOfInertia &&
+                            generalInfoState.numMomentOfInertia.map((ea, i) => (
+                                <input
+                                    key={`numMomentOfInertia-${i}`}
+                                    className={`${styles["input-style"]} form-control input-MoI`}
+                                    type="number"
+                                    name="MoI"
+                                    value={ea}
+                                    onChange={(e) => handlePropertiesDataUpdate("numMomentOfInertia", e.target.value, i)}
+                                />
+                            ))}
                     </div>
                 </div>
                 <h3 className={styles["section-header"]}>Joint Input</h3>
@@ -291,6 +295,7 @@ function Input(): JSX.Element {
                                     <label>{`Joint #${i + 1}`}</label>
                                     <input
                                         className={`${styles["input-style"]} form-control joint`}
+                                        type="number"
                                         name="joints"
                                         placeholder="X-coord."
                                         value={ea[0]}
@@ -298,6 +303,7 @@ function Input(): JSX.Element {
                                     />
                                     <input
                                         className={`${styles["input-style"]} form-control joint`}
+                                        type="number"
                                         name="joints"
                                         placeholder="Y-coord."
                                         value={ea[1]}
@@ -422,6 +428,7 @@ function Input(): JSX.Element {
                                 <input
                                     className={`${styles["input-style"]} form-control joint-loads jl-x`}
                                     name="loads"
+                                    type="number"
                                     placeholder="X value"
                                     value={ea[1]}
                                     onChange={(e) => handleLoadsDataUpdate("jointLoads", e.target.value, i, "1")}
@@ -429,6 +436,7 @@ function Input(): JSX.Element {
                                 <input
                                     className={`${styles["input-style"]} form-control joint-loads jl-y`}
                                     name="loads"
+                                    type="number"
                                     placeholder="Y value"
                                     value={ea[2]}
                                     onChange={(e) => handleLoadsDataUpdate("jointLoads", e.target.value, i, "2")}
@@ -436,6 +444,7 @@ function Input(): JSX.Element {
                                 <input
                                     className={`${styles["input-style"]} form-control joint-loads jl-m`}
                                     name="loads"
+                                    type="number"
                                     placeholder="Moment"
                                     value={ea[3]}
                                     onChange={(e) => handleLoadsDataUpdate("jointLoads", e.target.value, i, "3")}
@@ -459,6 +468,7 @@ function Input(): JSX.Element {
                                 <input
                                     className={`${styles["input-style"]} form-control member-loads ml-xd`}
                                     name="loads"
+                                    type="number"
                                     placeholder="X-distance"
                                     value={ea[1]}
                                     onChange={(e) => handleLoadsDataUpdate("memberLoads", e.target.value, i, "1")}
@@ -466,6 +476,7 @@ function Input(): JSX.Element {
                                 <input
                                     className={`${styles["input-style"]} form-control member-loads ml-pl`}
                                     name="loads"
+                                    type="number"
                                     placeholder="Point Load"
                                     value={ea[2]}
                                     onChange={(e) => handleLoadsDataUpdate("memberLoads", e.target.value, i, "2")}
@@ -473,6 +484,7 @@ function Input(): JSX.Element {
                                 <input
                                     className={`${styles["input-style"]} form-control member-loads ml-udl`}
                                     name="loads"
+                                    type="number"
                                     placeholder="UDL"
                                     value={ea[3]}
                                     onChange={(e) => handleLoadsDataUpdate("memberLoads", e.target.value, i, "3")}

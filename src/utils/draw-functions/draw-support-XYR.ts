@@ -1,6 +1,6 @@
-import { tGlobalNodeObject } from "../../types.js";
+import { tGlobalMemberObject, tGlobalNodeObject } from "../../types";
 
-export function drawSupportXYR(jointNum: number, nodes: tGlobalNodeObject, members: { [x: string]: any }, window: string): void {
+export function drawSupportXYR(jointNum: number, nodes: tGlobalNodeObject, members: tGlobalMemberObject, window: string): void {
     // fixed support
     const currentJoint = nodes[jointNum];
 

@@ -1,4 +1,6 @@
-export function drawReactionY(jointNum: string | number, load: number, nodes: { [x: string]: number[][] }): void {
+import { tGlobalNodeObject } from "../../types";
+
+export function drawReactionY(jointNum: number, load: number, nodes: tGlobalNodeObject): void {
     const headX = nodes[jointNum][1][0];
     const headY = nodes[jointNum][1][1];
     const tailX = headX;

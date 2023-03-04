@@ -1,4 +1,4 @@
-import { tGlobalNodeObject } from "../../types.js";
+import { tGlobalNodeObject } from "../../types";
 
 export function drawSupportR(jointNum: number, nodes: tGlobalNodeObject, window: string): void {
     if (!nodes[jointNum][1][0] || !nodes[jointNum][1][1]) return;

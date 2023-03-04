@@ -1,4 +1,4 @@
-import { tGlobalNodeObject } from "../../types.js";
+import { tGlobalNodeObject } from "../../types";
 
 export function drawJointLoadM(jointNum: number, moment: number, nodes: tGlobalNodeObject, window: string): void {
     if (!nodes[jointNum]) return;

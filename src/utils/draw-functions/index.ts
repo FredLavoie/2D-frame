@@ -1,17 +1,17 @@
-import { drawJoint } from "./draw-joint.js";
-import { drawMember } from "./draw-member.js";
-import { drawSupportXYR } from "./draw-support-XYR.js";
-import { drawSupportXY } from "./draw-support-XY.js";
-import { drawSupportXR } from "./draw-support-XR.js";
-import { drawSupportYR } from "./draw-support-YR.js";
-import { drawSupportX } from "./draw-support-X.js";
-import { drawSupportY } from "./draw-support-Y.js";
-import { drawSupportR } from "./draw-support-R.js";
-import { drawJointLoadX } from "./draw-joint-load-X.js";
-import { drawJointLoadY } from "./draw-joint-load-Y.js";
-import { drawJointLoadM } from "./draw-joint-load-M.js";
-import { drawMemberPointLoad } from "./draw-member-point-load.js";
-import { drawMemberUDLLoad } from "./draw-member-UDL-load.js";
+import { drawJoint } from "./draw-joint";
+import { drawMember } from "./draw-member";
+import { drawSupportXYR } from "./draw-support-XYR";
+import { drawSupportXY } from "./draw-support-XY";
+import { drawSupportXR } from "./draw-support-XR";
+import { drawSupportYR } from "./draw-support-YR";
+import { drawSupportX } from "./draw-support-X";
+import { drawSupportY } from "./draw-support-Y";
+import { drawSupportR } from "./draw-support-R";
+import { drawJointLoadX } from "./draw-joint-load-X";
+import { drawJointLoadY } from "./draw-joint-load-Y";
+import { drawJointLoadM } from "./draw-joint-load-M";
+import { drawMemberPointLoad } from "./draw-member-point-load";
+import { drawMemberUDLLoad } from "./draw-member-UDL-load";
 
 export {
     drawJoint,

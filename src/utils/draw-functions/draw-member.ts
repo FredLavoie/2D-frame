@@ -1,16 +1,16 @@
-import { tGlobalNodeObject } from "../../types.js";
+import { tGlobalNodeObject } from "../../types";
 
 /**
  * Draw the line representing a member within a box
  *
- * @param {number} num the member id number to display
- * @param {number} start the coordinate of the start of the member
- * @param {number} end the coordinate of the end of the member
- * @param {number[]} nodes coordinates of joints within the SVG box where draw the member to-and-from
- * @param {string} window the CSS class of the SVG box to append the new SVG elements to
+ * @param num the member id number to display
+ * @param start the coordinate of the start of the member
+ * @param end the coordinate of the end of the member
+ * @param nodes coordinates of joints within the SVG box where draw the member to-and-from
+ * @param window the CSS class of the SVG box to append the new SVG elements to
  * @returns nothing
  */
-export function drawMember(num: number, start: string | number, end: string | number, nodes: tGlobalNodeObject, window: string): void {
+export function drawMember(num: number, start: number, end: number, nodes: tGlobalNodeObject, window: string): void {
     if (!(start in nodes) || !(end in nodes)) return;
 
     if (start !== 0 && end !== 0) {

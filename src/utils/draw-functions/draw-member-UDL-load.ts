@@ -1,4 +1,4 @@
-import { tGlobalMemberObject, tGlobalNodeObject } from "../../types.js";
+import { tGlobalMemberObject, tGlobalNodeObject } from "../../types";
 
 export function drawMemberUDLLoad(
     memberNum: number,
