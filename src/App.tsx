@@ -3,11 +3,12 @@ import { Routes, Route } from "react-router-dom";
 
 import Dashboard from "./views/Dashboard";
 import Documentation from "./views/Documentation";
-import RouteNotFound from "./views/RouteNotFound";
 import Home from "./views/Home";
 import Input from "./views/Input";
 import Layout from "./components/Layout";
 import Login from "./views/Login";
+import Results from "./views/Results";
+import RouteNotFound from "./views/RouteNotFound";
 
 function App(): JSX.Element {
     return (
@@ -17,6 +18,7 @@ function App(): JSX.Element {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="documentation" element={<Documentation />} />
                 <Route path="input" element={<Input />} />
+                <Route path="results/:id" element={<Results />} />
                 <Route path="login" element={<Login />} />
 
                 {/* Using path="*"" means "match anything", so this route

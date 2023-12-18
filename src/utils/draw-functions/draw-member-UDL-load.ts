@@ -7,6 +7,7 @@ export function drawMemberUDLLoad(
     members: tGlobalMemberObject,
     window: string,
 ): void {
+    if (!members[memberNum]?.joints) return;
     const startJoint = members[memberNum].joints[0];
     const endJoint = members[memberNum].joints[1];
     const xDist = nodes[endJoint][0][0] - nodes[startJoint][0][0];

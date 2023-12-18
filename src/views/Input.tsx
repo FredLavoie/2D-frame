@@ -1,7 +1,9 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { validateForm } from "../utils/validate-form-client";
 import { redrawAllData } from "../utils/input-form-utils";
+import { postModel } from "../services/fetchData";
 
 import styles from "../styles/Input.module.scss";
 
@@ -19,6 +21,9 @@ type tLoadsInfoState = {
 };
 
 function Input(): JSX.Element {
+    const navigate = useNavigate();
+
+    const [disableButton, setDisableButton] = useState(false);
     const [generalInfoState, updateGeneralInfoState] = useReducer(
         (prev: tGeneralInfoState, next: tGeneralInfoState) => {
             return { ...prev, ...next };
@@ -165,14 +170,28 @@ function Input(): JSX.Element {
         updateLoadsInfoState({ [property]: newLoadsInfoStateObj });
     }
 
-    function handleSubmit(event: { preventDefault: () => void }): void {
+    async function handleSubmit(event): Promise<void> {
         event.preventDefault();
         // print out all the form values to the console
+        const formData = new FormData(event.target);
 
-        // change this to send the form data to be validated instead
-        // of using querySelectorAll in the validation file itself
+        // the validation function grabs the form elements using the standard html/javascript
+        // library rather than passing the form data directly from here
         const validForm = validateForm();
-        if (!validForm) return;
+
+        if (validForm) {
+            try {
+                setDisableButton(true);
+                const uniqueId = crypto.randomUUID();
+                await postModel(uniqueId, formData);
+                navigate(`/results/${uniqueId}`);
+            } catch (error) {
+                setDisableButton(false);
+                // TODO: implement error handling
+            }
+        } else {
+            return;
+        }
     }
 
     return (
@@ -493,7 +512,7 @@ function Input(): JSX.Element {
                         ))}
                 </div>
 
-                <button type="submit" className={`${styles["analize"]} btn btn-outline-primary`}>
+                <button type="submit" disabled={disableButton} className={`${styles["analize"]} btn btn-outline-primary`}>
                     Analyze Structure
                 </button>
             </form>

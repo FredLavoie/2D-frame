@@ -52,3 +52,13 @@ app.get("/api/users/:userId/", async (req: Request, res: Response) => {
 
 /************************************************* POST REQUEST ******************************************************/
 /*********************************************************************************************************************/
+
+app.post("/api/models/new/", async (req: Request, res: Response) => {
+    const { userId } = req.params;
+    const models = await prisma.model.findMany({
+        where: { authorId: Number(userId) },
+    });
+    return res.json({
+        models: models,
+    });
+});
